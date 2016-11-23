@@ -22,8 +22,8 @@ Bundler.require
 
 desc 'Start up the dynamic site'
 task :serve do
-  puts "Starting server at http://localhost:3000"
-  sh "foreman start"
+  puts "Starting server at http://localhost:4444"
+  sh "env PORT=4444 foreman start "
 end
 
 desc "Deploy to heroku"

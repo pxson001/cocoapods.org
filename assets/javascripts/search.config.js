@@ -1,7 +1,9 @@
 $(window).ready(function() {
   // The search uses the convenience API on search.cocoapods.org.
   //
-  var domain = 'https://search.cocoapods.org';
+  var domain = 'http://localhost:7777';
+  // var domain = 'https://search.cocoapods.org';
+
   // var domain = 'http://localhost:8080';
 
   var searchURL = domain + '/api/v1/pods.picky.hash.json';
@@ -266,9 +268,14 @@ $(window).ready(function() {
     //   return '<a href="javascript:pickyClient.insert(\'' + name.replace(/[']/, "\\\\\'") + '\')">' + name + '</a>';
     // });
 
-    entry.docs_link = entry.documentation_url || 'http://cocoadocs.org/docsets/' + entry.id + '/' + entry.version;
+    entry.docs_link = entry.documentation_url || 'https://s3-ap-southeast-1.amazonaws.com/pxson001.trunk.cocoapods.org/docsets/' + entry.id + '/' + entry.version + '/index.html';
     entry.site_link = entry.link || extractRepoFromSource(entry)
-    entry.spec_link = 'https://github.com/CocoaPods/Specs/tree/master/Specs/' + entry.id + '/' + entry.version + '/' + entry.id + '.podspec.json'
+    entry.spec_link = 'https://github.com/pxson001/trunk.cocoapods.org-test/tree/master/Specs/' + entry.id + '/' + entry.version + '/' + entry.id + '.podspec.json'
+
+    // entry.docs_link = entry.documentation_url || 'http://cocoadocs.org/docsets/' + entry.id + '/' + entry.version;
+    // entry.site_link = entry.link || extractRepoFromSource(entry)
+    // entry.spec_link = 'https://github.com/CocoaPods/Specs/tree/master/Specs/' + entry.id + '/' + entry.version + '/' + entry.id + '.podspec.json'
+
 
     // If the version string has any non-numeric characters (pre-release or build metadata flags),
     // the clipboard copy prompt should use the raw version number.
@@ -281,14 +288,16 @@ $(window).ready(function() {
     }
 
     if (entry.deprecated_in_favor_of) {
-      entry.deprecated_in_favor_of_link = "https://cocoapods.org?q=" + entry.deprecated_in_favor_of;
+      entry.deprecated_in_favor_of_link = "http://localhost:5555?q=" + entry.deprecated_in_favor_of;
     } else {
       entry.deprecated_in_favor_of_link = ""
     }
 
     // render with ICanHaz, see _search-templates
     if (entry.cocoadocs) {
-      entry.site_link = "/pods/" + entry.id
+      entry.site_link = 'https://s3-ap-southeast-1.amazonaws.com/pxson001.trunk.cocoapods.org/docsets/' + entry.id + '/' + entry.version + '/index.html'
+      
+      // entry.site_link = "/pods/" + entry.id
       return ich.expandable_search_result(entry, true)
     } else {
       return ich.search_result(entry, true)

@@ -25,7 +25,7 @@ module Pod
     end
 
     def or_podspec_url
-      "https://github.com/CocoaPods/Specs/blob/master/Specs/" \
+      "https://github.com/pxson001/trunk.cocoapods.org-test/blob/master/Specs/" \
         "#{MasterRepoMetadata.path_fragment(name, version)}/#{ name }.podspec.json"
     end
 
@@ -38,7 +38,7 @@ module Pod
     end
 
     def or_cocoadocs_url
-      "http://cocoadocs.org/docsets/#{ name }/#{ version }"
+      "https://s3-ap-southeast-1.amazonaws.com/pxson001.trunk.cocoapods.org/docsets/#{ name }/#{ version }"
     end
 
     def or_git_ref
